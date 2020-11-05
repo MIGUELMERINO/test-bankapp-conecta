@@ -1,0 +1,28 @@
+.change-format-text{
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: .2rem;
+}
+
+.change-color {
+    color: #00ff80 !important;
+}
+
+.change-space-item {
+    margin-left: 14rem;
+    margin-right: 4rem;
+}
+
+.position-name {
+    position: absolute;
+    right: 1rem;
+    top: .4rem;
+    font-size: 1.2rem;
+}
+
+.position-init {
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    font-size: 0.9rem;
+}
