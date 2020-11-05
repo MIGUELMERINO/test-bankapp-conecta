@@ -108,6 +108,7 @@
 .card-add {
     height: 2.5rem;
     padding: .3rem;
+    background-color: #e6e6e6;
 }
 
 
@@ -118,11 +119,33 @@
     border-color: #00ff80;
 }
 
+.change-colors {
+    background-color: white;
+}
+
 .text-succes {
     color:  #00ff80;
 }
 
 .text-danger {
     color:  red;
+}
+
+.postion-title-modal {
+    position: relative;
+    left: 12rem;
+    font-size: 1rem;
+}
+
+.postion-title-modal-letf {
+    position: relative;
+    font-size: 1rem;
+    left: 4rem;
+    color:  #00ff80;
+}
+.change-position-icon {
+    position: absolute;
+    right: 1rem;
+    font-size: 1.6rem;
 }
 

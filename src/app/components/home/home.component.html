@@ -35,25 +35,16 @@
                         <p class="card-text postion-tarjet-title">{{item.tipo}}</p>
                     </div>
                 </div>
-               <!--  <div class="card">
-                    <div class="card-body card-tarjet-disabled">
-                        <p class="card-text postion-tarjet">$8,000.00</p>
-                        <p class="card-text postion-tarjet-status">Activa</p>
-                        <p class="card-text postion-tarjet-cuenta">042-23-45-67-89-23-02</p>
-                        <p class="card-text postion-tarjet-name">My name</p>
-                        <p class="card-text postion-tarjet-title">Titular</p>
-                    </div>
-                </div> -->
             </div>
 
             <div class="card border-button-style card-add" data-toggle="modal" data-target=".bd-example-modal-lg">
-                AGREGAR TARJETA<i class="fas fa-plus-circle"></i>
+                AGREGAR TARJETA <i class="fas fa-plus-circle change-position-icon"></i>
             </div>
 
         </div>
         <div class="col-8">
             MOVIMIENTOS
-            <table class="table table-bordered">
+            <table class="table table-bordered change-colors">
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
@@ -65,7 +56,7 @@
                     <tr *ngFor="let item of movements">
                         <th>{{item.fecha}}</th>
                         <td>{{item.descripcion}}</td>
-                        <td [ngClass]="(item.tipo === 'abono') ? 'text-succes': 'text-danger' ">{{item.monto}}</td>
+                        <td [ngClass]="(item.tipo === 'abono') ? 'text-succes': 'text-danger' ">${{item.monto}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -81,32 +72,40 @@
         <div class="modal-content">
             <div class="container-fluid">
                 <div class="row mt-3">
-                    <div class="col-6">Bankapp</div>
-                    <div class="col-6">Agregar tarjeta</div>
+                    <div class="col-6">
+                        <small class="postion-title-modal-letf mb-2">Bankapp</small>
+                    </div>
+                    <div class="col-6">
+                    <small class="postion-title-modal mb-2">Agregar tarjeta</small>
+                    </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-1"></div>
                     <div class="col-10">
-                        <form>
+                        <form [formGroup]="formCard">
                             <div class="form-group">
-                                <input type="text" placeholder="Numero de tarjeta" class="form-control mb-2">
+                                <input type="text" placeholder="Numero de tarjeta" formControlName="tarjeta" #input class="form-control mb-2">
                                 <div class="d-flex justify-content-center mb-2">
-                                    <input type="text" class="form-control col-6 mr-2" placeholder="Cuenta">
-                                    <input type="text" class="form-control col-6" placeholder="Issuer">
+                                    <input type="text" class="form-control col-6 mr-2" formControlName="cuenta" placeholder="Cuenta">
+                                    <input type="text" class="form-control col-6" formControlName="issuer" placeholder="Issuer">
                                 </div>
-                                <input type="text" placeholder="Nombre de tarjeta" class="form-control mb-2">
-                                <input type="text" placeholder="Marca" class="form-control mb-2">
-                                <input type="text" placeholder="Estatus" class="form-control mb-2">
-                                <input type="text" placeholder="Saldo" class="form-control mb-2">
-                                <input type="text" placeholder="Tipo de cuenta" class="form-control mb-2">
+                                <input type="text" placeholder="Nombre de tarjeta" formControlName="nombretarjeta" class="form-control mb-2">
+                                <input type="text" placeholder="Marca" formControlName="marca" class="form-control mb-2">
+                                <input type="text" placeholder="Estatus" formControlName="estatus" class="form-control mb-2">
+                                <input type="text" placeholder="Saldo" formControlName="saldo" class="form-control mb-2">
+                                <input type="text" placeholder="Tipo de cuenta" formControlName="tipocuenta" class="form-control mb-2">
                             </div>
                         </form>
                         <div class="row">
                             <div class="col-1"></div>
-                            <div class="col-10">
-                                <div class="d-flex justify-content-around mb-2">
+                            <div class="col-10 mb-5">
+                                <div class="row">
+                                   <div class="col-5">
                                     <button class="btn btn-block btn-secondary mr-1" data-dismiss="modal">Cancelar</button>
-                                    <button class="btn btn-block btn-success">Agregar tarjeta</button>
+                                   </div>
+                                   <div class="col-5">
+                                    <button class="btn btn-block btn-success" [disabled]="formCard.invalid" (click)="add()">Agregar tarjeta</button>
+                                   </div>
                                 </div>
                             </div>
                             <div class="col-1"></div>

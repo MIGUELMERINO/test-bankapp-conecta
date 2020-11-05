@@ -1,6 +1,12 @@
 .footer {
     width: 100%;
-    background-color: gray;
-    color: white;
+    color: #666666 !important;
     text-align: center;
-  }
+}
+
+.position-logo {
+  font-size: 2rem;
+  position: absolute;
+  right: 0;
+  color: #666666 !important;
+}

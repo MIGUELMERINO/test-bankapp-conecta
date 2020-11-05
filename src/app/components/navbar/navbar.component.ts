@@ -10,12 +10,13 @@ export class NavbarComponent implements OnInit {
 
   cuenta;
   
-  constructor(private home: HomeService) { }
-
-  ngOnInit(): void {
+  constructor(private home: HomeService) {
     this.home.getAccounts().subscribe( res => {
       this.cuenta = res.cuenta[0];
     });
+  }
+
+  ngOnInit(): void {
   }
 
 }
