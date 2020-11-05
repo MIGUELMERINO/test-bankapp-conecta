@@ -2,21 +2,21 @@
     <div class="card" style="width: 18rem; height: 6rem; margin-right: 2rem;">
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted position-text">SALDO GENERAL EN CUENTAS</h6>
-            <p class="card-text postion-sander">$2,000.00</p>
+            <p class="card-text postion-sander">${{balances.saldoGeneral}}</p>
         </div>
     </div>
 
     <div class="card" style="width: 18rem; height: 6rem; margin-right: 2rem;">
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted position-text">TOTAL DE INGRESOS</h6>
-            <p class="card-text postion-sander-disabled">$8,000.00</p>
+            <p class="card-text postion-sander-disabled">${{balances.ingresos}}</p>
         </div>
     </div>
 
     <div class="card" style="width: 18rem; height: 6rem; margin-right: 2rem;">
         <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted position-text">TOTAL DE INGRESOS</h6>
-            <p class="card-text postion-sander-disabled">$6,000.00</p>
+            <h6 class="card-subtitle mb-2 text-muted position-text">TOTAL DE GASTOS</h6>
+            <p class="card-text postion-sander-disabled">${{balances.gastos}}</p>
         </div>
     </div>
 </header>
@@ -26,16 +26,16 @@
         <div class="col-4">
             MIS CUENTAS
             <div class="scroll">
-                <div class="card">
-                    <div class="card-body card-tarjet">
-                        <p class="card-text postion-tarjet">$8,000.00</p>
-                        <p class="card-text postion-tarjet-status">Activa</p>
-                        <p class="card-text postion-tarjet-cuenta">042-23-45-67-89-23-02</p>
-                        <p class="card-text postion-tarjet-name">My name</p>
-                        <p class="card-text postion-tarjet-title">Titular</p>
+                <div class="card" *ngFor="let item of cards">
+                    <div [ngClass]="(item.estado === 'activa') ? 'card-body card-tarjet': 'card-body card-tarjet-disabled'">
+                        <p class="card-text postion-tarjet">${{item.saldo}}</p>
+                        <p class="card-text postion-tarjet-status">{{item.estado}}</p>
+                        <p class="card-text postion-tarjet-cuenta">{{item.tarjeta}}</p>
+                        <p class="card-text postion-tarjet-name">{{item.nombre}}</p>
+                        <p class="card-text postion-tarjet-title">{{item.tipo}}</p>
                     </div>
                 </div>
-                <div class="card">
+               <!--  <div class="card">
                     <div class="card-body card-tarjet-disabled">
                         <p class="card-text postion-tarjet">$8,000.00</p>
                         <p class="card-text postion-tarjet-status">Activa</p>
@@ -43,7 +43,7 @@
                         <p class="card-text postion-tarjet-name">My name</p>
                         <p class="card-text postion-tarjet-title">Titular</p>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="card border-button-style card-add" data-toggle="modal" data-target=".bd-example-modal-lg">
@@ -62,10 +62,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                    <tr *ngFor="let item of movements">
+                        <th>{{item.fecha}}</th>
+                        <td>{{item.descripcion}}</td>
+                        <td [ngClass]="(item.tipo === 'abono') ? 'text-succes': 'text-danger' ">{{item.monto}}</td>
                     </tr>
                 </tbody>
             </table>

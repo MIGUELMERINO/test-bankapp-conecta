@@ -118,3 +118,11 @@
     border-color: #00ff80;
 }
 
+.text-succes {
+    color:  #00ff80;
+}
+
+.text-danger {
+    color:  red;
+}
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  cuenta;
+  
+  constructor(private home: HomeService) { }
 
   ngOnInit(): void {
+    this.home.getAccounts().subscribe( res => {
+      this.cuenta = res.cuenta[0];
+    });
   }
 
 }

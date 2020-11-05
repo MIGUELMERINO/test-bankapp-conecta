@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  movements;
+  cards;
+  balances;
+
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
+    this.homeService.getMovements().subscribe( (res) => {
+      this.movements = res.movimientos;
+    }, error => console.error(error));
+    this.homeService.getCard().subscribe( res => {
+      this.cards = res.tarjetas;
+    }, error => console.error(error));
+    this.homeService.getBalances().subscribe( res => {
+      console.log(res.saldos);
+      this.balances = res.saldos[0];
+    }, error=> console.error(error));
   }
 
 }
